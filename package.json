@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cy:coverage": "nyc --clean cypress run"
+    "cy:coverage": "nyc --clean cypress run",
+    "instrument": "npx nyc instrument --compact=false ./cypress/src instrumented"
   },
   "eslintConfig": {
     "extends": [
