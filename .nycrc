@@ -1,0 +1,8 @@
+{
+  "reporter": [
+    "text",
+    "cobertura",
+    "lcov",
+    "json"
+  ]
+}
