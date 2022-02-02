@@ -4,5 +4,8 @@
     "cobertura",
     "lcov",
     "json"
+  ],
+  "exclude": [
+    "cypress/"
   ]
 }
