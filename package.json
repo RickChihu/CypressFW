@@ -18,6 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cy:coverage": "nyc --clean cypress run",
+    "lint": "npx standard && npx gherkin-lint",
     "instrument": "npx nyc instrument --compact=false ./cypress/src instrumented"
   },
   "eslintConfig": {
@@ -43,10 +44,19 @@
     "babel-plugin-istanbul": "^6.1.1",
     "cypress": "^9.4.1",
     "cypress-cucumber-preprocessor": "^4.3.1",
+    "gherkin-lint": "^4.2.2",
     "istanbul-instrumenter-loader": "^3.0.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "standard": "^16.0.4"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
+  },
+  "standard": {
+    "global": [
+      "cy",
+      "test",
+      "expect"
+    ]
   }
 }
