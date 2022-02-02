@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+## Node Version
+node version > 14.0.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React
+npx create-react-app {name}
+cd {name}
 
-## Available Scripts
+## Instrument
+npm i @cypress/instrument-cra
+update "package.json"
+```
+  "scripts": {
+    "start": "react-scripts -r @cypress/instrument-cra start",
+```
 
-In the project directory, you can run:
+## Cypress
+npm install -D cypress
+npx cypress open
 
-### `npm start`
+# Code Coverage
+npm i -D @cypress/code-coverage babel-plugin-istanbul istanbul-instrumenter-loader nyc
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+.babelrc
+```
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    "istanbul"
+  ]
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+.nycrc
+```
+{
+  "reporter": [
+    "text",
+    "cobertura",
+    "lcov",
+    "json"
+  ],
+  "exclude": [
+    "cypress/"
+  ]
+}
+```
 
-### `npm test`
+add to cypress/support/index.js
+```
+import '@cypress/code-coverage/support'
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+add to the module.exports of cypress/plugins/index.js
+```
+module.exports = (on, config) => {
+  require('@cypress/code-coverage/task')(on, config)
 
-### `npm run build`
+  return config
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npx nyc --clean cypress run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Cucumber
+https://github.com/TheBrainFamily/cypress-cucumber-preprocessor
+- npm i -D cypress-cucumber-preprocessor
+If @cypress-cucumber-preprocessor gets installed, delete.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Standard
+npm i -D standard gherkin-lint
