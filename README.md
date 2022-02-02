@@ -14,11 +14,11 @@ update "package.json"
 ```
 
 ## Cypress
-npm install -D cypress
+npm i -D cypress
 npx cypress open
 
 # Code Coverage
-npm i -D @cypress/code-coverage babel-plugin-istanbul istanbul-instrumenter-loader nyc
+npm i -D @cypress/code-coverage babel-plugin-istanbul nyc
 
 .babelrc
 ```

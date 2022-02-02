@@ -45,7 +45,6 @@
     "cypress": "^9.4.1",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "gherkin-lint": "^4.2.2",
-    "istanbul-instrumenter-loader": "^3.0.1",
     "nyc": "^15.1.0",
     "standard": "^16.0.4"
   },
